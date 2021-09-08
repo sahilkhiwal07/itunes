@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">itunes</string>
+
+    <string name="track_name">Track Name</string>
+    <string name="collection_name">Collection Name</string>
+    <string name="artist_name">Artist Name</string>
+
+    <string name="search_artist">Search Artist</string>
+
+</resources>
