@@ -2,20 +2,22 @@ package com.example.itunes.ui.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.SearchView
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itunes.R
 import com.example.itunes.ui.adapter.SongsAdapter
 import com.example.itunes.ui.viewmodel.MyFactory
 import com.example.itunes.ui.viewmodel.SongsViewModel
+import com.example.itunes.utils.Constants.Companion.SEARCH_TIME_DELAY
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     private lateinit var songsAdapter: SongsAdapter
     private lateinit var viewModel: SongsViewModel
+    var job: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,8 +25,22 @@ class MainActivity : AppCompatActivity() {
 
         setRecyclerView()
         initViewModel()
-        searchArtist()
+        searchQuery()
 
+    }
+
+    private fun searchQuery() {
+        et_search.addTextChangedListener {
+            if (!it.isNullOrBlank()) {
+                job?.cancel()
+                job = MainScope().launch {
+                    delay(SEARCH_TIME_DELAY)
+                    viewModel.makeApiCallForSong(et_search.text.toString().trim())
+                }
+            } else {
+                viewModel.makeApiCallForSong("Pitbull")
+            }
+        }
     }
 
     private fun initViewModel() {
@@ -34,21 +50,8 @@ class MainActivity : AppCompatActivity() {
             songsAdapter.submitList(it)
         })
 
-        viewModel.makeApiCall("Camila Cabello")
-    }
+        viewModel.makeApiCallForSong("Pitbull")
 
-    private fun searchArtist() {
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                viewModel.makeApiCall(newText.toString())
-                return false
-            }
-
-        })
     }
 
     private fun setRecyclerView() {

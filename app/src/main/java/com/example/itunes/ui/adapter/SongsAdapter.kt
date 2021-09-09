@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.itunes.ui.base.Detailed
 import com.example.itunes.R
 import com.example.itunes.data.model.Result
 
@@ -45,6 +47,7 @@ class SongsAdapter(
         private val collection: AppCompatTextView = itemView.findViewById(R.id.tv_collectionName)
         private val artistName: AppCompatTextView = itemView.findViewById(R.id.tv_artistName)
         private val image: AppCompatImageView = itemView.findViewById(R.id.image)
+        private val singleItem: CardView = itemView.findViewById(R.id.singleItem)
 
         fun bind(result: Result) {
             trackName.text = result.trackName
@@ -54,6 +57,10 @@ class SongsAdapter(
             Glide.with(itemView.context)
                 .load(result.artworkUrl100)
                 .into(image)
+
+            singleItem.setOnClickListener {
+                itemView.context.startActivity(Detailed.sendData(it.context, result))
+            }
 
         }
 

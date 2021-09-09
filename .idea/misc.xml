@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/JARVIS/AndroidStudioProjects/itunes/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/JARVIS/AndroidStudioProjects/itunes/app/src/main/res/drawable/ic_search.xml" value="0.1" />
+        <entry key="..\:/Users/JARVIS/AndroidStudioProjects/itunes/app/src/main/res/layout/activity_detailed.xml" value="0.25" />
+        <entry key="..\:/Users/JARVIS/AndroidStudioProjects/itunes/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/JARVIS/AndroidStudioProjects/itunes/app/src/main/res/layout/custom_item.xml" value="0.25" />
       </map>
     </option>

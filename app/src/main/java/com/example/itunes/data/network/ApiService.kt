@@ -7,9 +7,9 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("search?term=Camila + Cabello")
+    @GET("search")
     suspend fun getAllSongs(
-        @Query("search")search: String
+        @Query("term") term: String
     ): Response<Songs>
 
 }

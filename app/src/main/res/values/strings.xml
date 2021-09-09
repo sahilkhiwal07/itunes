@@ -4,7 +4,9 @@
     <string name="track_name">Track Name</string>
     <string name="collection_name">Collection Name</string>
     <string name="artist_name">Artist Name</string>
-
     <string name="search_artist">Search Artist</string>
+    <string name="track_number">Track Number</string>
+    <string name="release_date">Release Date</string>
+    <string name="demo_image">demo_image</string>
 
 </resources>

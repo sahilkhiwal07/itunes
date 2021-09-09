@@ -8,11 +8,11 @@ import com.example.itunes.database.repository.SongRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class SongsViewModel constructor(application: Application): AndroidViewModel(application) {
 
     private val repository = SongRepository(application)
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 
     private fun insertAllSongs(result: List<Result>){
         viewModelScope.launch {
@@ -24,13 +24,16 @@ class SongsViewModel constructor(application: Application): AndroidViewModel(app
         return repository.getAllSongs()
     }
 
-    fun makeApiCall(search: String) {
-        viewModelScope.launch(ioDispatcher) {
-            val songs = RetrofitInstance.api.getAllSongs(search).body()
-            if (songs != null) {
-                this@SongsViewModel.insertAllSongs(songs.results)
+    fun makeApiCallForSong(search: String) = viewModelScope.launch {
+        val songsResponse = repository.makeApiCall(search)
+        try {
+            if (songsResponse != null) {
+                this@SongsViewModel.insertAllSongs(songsResponse.results)
             }
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
+
     }
 
 }
