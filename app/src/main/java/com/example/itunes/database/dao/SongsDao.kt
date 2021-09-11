@@ -11,7 +11,10 @@ import com.example.itunes.data.model.Result
 interface SongsDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertAllSongs(result: List<Result>)
+    suspend fun insertSongsByArtistName(result: List<Result>)
+
+    @Query("select * from Result where artistName LIKE :name")
+    fun getSongsByArtist(name: String): LiveData<List<Result>>
 
     @Query("select * from Result")
     fun getAllSongs(): LiveData<List<Result>>

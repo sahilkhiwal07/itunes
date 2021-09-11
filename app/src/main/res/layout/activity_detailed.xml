@@ -24,8 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="16sp"
+        android:maxLines="1"
         android:text="@string/track_name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/d_image" />
 
@@ -34,8 +35,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="@string/track_name"
         android:ellipsize="end"
+        android:ems="13"
+        android:maxLines="1"
+        android:text="@string/track_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/d_image" />
@@ -46,8 +49,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="16sp"
+        android:maxLines="1"
         android:text="@string/collection_name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -56,9 +60,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:textSize="16sp"
         android:ellipsize="end"
+        android:ems="13"
+        android:maxLines="1"
         android:text="@string/collection_name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/d_trackName" />
 
@@ -68,8 +74,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:textSize="16sp"
+        android:maxLines="1"
         android:text="@string/artist_name"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -79,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ellipsize="end"
+        android:ems="13"
+        android:maxLines="1"
         android:text="@string/artist_name"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -100,6 +109,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
+        android:ems="13"
+        android:maxLines="1"
         android:text="@string/track_number"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -122,6 +133,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:ellipsize="end"
+        android:ems="13"
+        android:maxLines="1"
         android:text="@string/release_date"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"

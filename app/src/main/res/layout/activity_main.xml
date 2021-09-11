@@ -14,7 +14,7 @@
         android:inputType="text"
         android:layout_gravity="center"
         android:drawableEnd="@drawable/ic_search"
-        android:hint="@string/search_artist"/>
+        android:hint="@string/search_artist" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/songs_recyclerView"

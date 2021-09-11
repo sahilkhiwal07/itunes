@@ -13,7 +13,7 @@ import com.example.itunes.utils.Constants.Companion.SEARCH_TIME_DELAY
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var songsAdapter: SongsAdapter
     private lateinit var viewModel: SongsViewModel
@@ -32,13 +32,16 @@ class MainActivity: AppCompatActivity() {
     private fun searchQuery() {
         et_search.addTextChangedListener {
             if (!it.isNullOrBlank()) {
+                // debounce
                 job?.cancel()
                 job = MainScope().launch {
                     delay(SEARCH_TIME_DELAY)
-                    viewModel.makeApiCallForSong(et_search.text.toString().trim())
+                    if (viewModel.hasInternetConnection()) {
+                        viewModel.makeApiCallForSong(it.toString().trim())
+                    } else {
+                        viewModel.getSongsByArtistName(it.toString().trim())
+                    }
                 }
-            } else {
-                viewModel.makeApiCallForSong("Pitbull")
             }
         }
     }
@@ -46,11 +49,18 @@ class MainActivity: AppCompatActivity() {
     private fun initViewModel() {
         viewModel = ViewModelProvider(this, MyFactory(application)).get(SongsViewModel::class.java)
 
-        viewModel.getAllSongs().observe(this, {
+        //By default
+        viewModel.getAllSongs().observe(this) {
             songsAdapter.submitList(it)
-        })
+        }
 
-        viewModel.makeApiCallForSong("Pitbull")
+        viewModel.filterSongsLiveData.observe(this) {
+            songsAdapter.submitList(it)
+        }
+
+        viewModel.getTracks().observe(this) {
+            songsAdapter.submitList(it)
+        }
 
     }
 

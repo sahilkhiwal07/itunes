@@ -14,7 +14,10 @@ class SongRepository(application: Application) {
         songsDao = db.songsDao()
     }
 
-    suspend fun insertAllSongs(result: List<Result>) = songsDao.insertAllSongs(result)
+    // Database
+    suspend fun insertSongsByArtistName(result: List<Result>) = songsDao.insertSongsByArtistName(result)
+
+    fun getSongsByArtistName(name: String) = songsDao.getSongsByArtist("%$name%")
 
     fun getAllSongs() = songsDao.getAllSongs()
 
