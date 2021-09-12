@@ -18,10 +18,11 @@ class SongsViewModel constructor(application: Application) : AndroidViewModel(ap
     private val trackLiveData: MutableLiveData<List<Result>> = MutableLiveData()
     private val nameLiveData = MutableLiveData<String>()
 
+    // Database
+
     val filterSongsLiveData = Transformations.switchMap(nameLiveData) {
         repository.getSongsByArtistName(it)
     }
-
     fun getSongsByArtistName(name: String) {
         nameLiveData.postValue(name)
     }
@@ -35,6 +36,8 @@ class SongsViewModel constructor(application: Application) : AndroidViewModel(ap
     fun getAllSongs(): LiveData<List<Result>> {
         return repository.getAllSongs()
     }
+
+    // Api Method
 
     fun getTracks():LiveData<List<Result>>  {
         return trackLiveData
