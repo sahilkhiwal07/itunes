@@ -10,7 +10,7 @@ This is demo project having feature given below :
 5. Shows list of songs at home page.
 6. Search songs by artist name with debouncing.
 7. Shows deatils of the song when you click the row.
-8. Checking network reponse.
+8. Room db is used for querying if there is no network connectivity.
 
 - Default home screen.
 
